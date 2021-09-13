@@ -16,19 +16,19 @@ const app = Vue.createApp({
         playerHealth(val) {
             if (val <= 0 && this.monsterHealth <= 0) {
                 // drwa
-                this.winner = "draw";
+                this.winner = "تعادل";
             } else if (val <= 0) {
                 // lost
-                this.winner = "monster";
+                this.winner = "الوحش";
             }
         },
         monsterHealth(val) {
             if (val <= 0 && this.playerHealth <= 0) {
                 // drwa
-                this.winner = "draw";
+                this.winner = "تعادل";
             } else if (val <= 0) {
                 // lost
-                this.winner = "player";
+                this.winner = "انت";
             }
         },
     },
@@ -41,19 +41,19 @@ const app = Vue.createApp({
             const myAttackValue = attackValue(5, 12);
             this.monsterHealth -= myAttackValue;
             this.attackPlayer();
-            this.gameLog("player", "attck", myAttackValue);
+            this.gameLog("انت", "هاجمت علي الوحش", myAttackValue);
         },
         attackPlayer() {
             const myAttackValue = attackValue(8, 12);
             this.playerHealth -= myAttackValue;
-            this.gameLog("monster", "attck", myAttackValue);
+            this.gameLog("الوحش", "هاجمك", myAttackValue);
         },
         spicalAttackMonster() {
             this.currentRound++;
             const myAttackValue = attackValue(10, 25);
             this.monsterHealth -= myAttackValue;
             this.attackPlayer();
-            this.gameLog("player", "Spicail-Attck", myAttackValue);
+            this.gameLog("انت", "هاجمت هجمه معززه", myAttackValue);
         },
         healPlayer() {
             this.currentRound++;
@@ -65,7 +65,7 @@ const app = Vue.createApp({
                 this.playerHealth += healValue;
             }
             this.attackPlayer();
-            this.gameLog("player", "Heal His Health", healValue);
+            this.gameLog("انت", "عززت طاقتك", healValue);
         },
         gameLog(who, what, value) {
             this.log.unshift({

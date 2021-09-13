@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 
 <head>
     <meta charset="UTF-8" />
@@ -17,48 +17,47 @@
     </header>
     <div id="game">
         <section id="monster" class="container">
-            <h2>Monster Health</h2>
+            <h2>طاقة الوحش</h2>
             <div class="healthbar">
                 <div class="healthbar__value" :style="{width: monsterHealth + '%'}"></div>
             </div>
         </section>
         <section id="player" class="container">
-            <h2>Your Health</h2>
+            <h2>طاقتك</h2>
             <div class="healthbar">
                 <div class="healthbar__value" :style="{width: playerHealth + '%'}"></div>
             </div>
         </section>
         <div class="game_over" v-if="winner">
             <section class="container game_over">
-                <h2>Game Over!</h2>
-                <h3 v-if="winner === 'monster'">
-                    You <span style="color: red"> Lost!</span>
+                <h2>انتهت اللعبه!</h2>
+                <h3 v-if="winner === 'الوحش'">
+                    لقد <span style="color: red"> هزمت!</span> من الوحش
                 </h3>
-                <h3 v-else-if="winner === 'player'">
-                    You <span style="color: #00a876"> Won!</span>
+                <h3 v-else-if="winner === 'انت'">
+                    لقد <span style="color: #00a876"> فزت!</span> علي الوحش
                 </h3>
-                <h3 v-else="winner === 'draw'">
-                    it's a <span style="color: #7700ff">Draw</span>
+                <h3 v-else="winner === 'تعادل'">
+                    لقد <span style="color: #7700ff">تعادلت</span> مع الوحش
                 </h3>
                 <section id="log" class="container">
-                    <h2>Battle Log</h2>
+                    <h2>سجل اللعب</h2>
                     <ul>
                         <li v-for="logV in log">
-                            <span :class="logV.whoAttack">{{logV.whoAttack}}</span> {{logV.whatHappen}} by Value:
+                            <span :class="logV.whoAttack">{{logV.whoAttack}}</span> {{logV.whatHappen}} بمستوي طاقه:
                             <span class="val"> {{logV.whatVal}} </span>
                         </li>
                     </ul>
                 </section>
-                <button @click="reloadPage">RePlay</button>
+                <button @click="reloadPage">اعادة اللعب</button>
             </section>
         </div>
         <section id="controls">
-            <button @click="attackMonster">ATTACK</button>
+            <button @click="attackMonster">هجوم</button>
             <button :disabled="currentRound % 3" @click="spicalAttackMonster">
-          SPECIAL ATTACK
+          هجوم معزز
         </button>
-            <button @click="healPlayer">HEAL</button>
-            <button>SURRENDER</button>
+            <button @click="healPlayer">اعادة تعبية الطاقه</button>
         </section>
     </div>
 </body>
